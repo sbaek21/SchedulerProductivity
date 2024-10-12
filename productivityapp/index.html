@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,4 +10,92 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Task Master</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li>Tasks</li>
+                <li>Performance</li>
+                <li>Timer</li>
+                <li>Calendar</li>
+                <li>Settings</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Board</h1>
+                <div class="profile">
+                    <span>Sunwoo Baek</span>
+                </div>
+            </header>
+            <div class="progress-bar">
+                <div style="width: 65%;">65% completed</div>
+            </div>
+            <div class="board">
+                <div class="column">
+                    <h3>On Progress</h3>
+                    <div class="task">
+                        <h4>User Research</h4>
+                        <p>Discussion on re-branding of demo Brand</p>
+                        <div class="task-status">77% completed</div>
+                    </div>
+                    <div class="task">
+                        <h4>Change copies</h4>
+                        <p>Update copies of website</p>
+                        <div class="task-status">37% completed</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3>Pending</h3>
+                    <div class="task">
+                        <h4>Re-branding Discussion</h4>
+                        <p>Discussion on re-branding of demo Brand</p>
+                        <div class="task-timer">58 min Left</div>
+                    </div>
+                    <div class="task">
+                        <h4>Brainstorming</h4>
+                        <p>Brainstorming with team on story app</p>
+                        <div class="task-timer">12 min Left</div>
+                    </div>
+                    <div class="task">
+                        <h4>UI/UX testing</h4>
+                        <p>Perform user testing on product</p>
+                        <div class="task-timer">2 Days Left</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3>Completed</h3>
+                    <div class="task completed">
+                        <h4>Schedule Post</h4>
+                        <p>Schedule Instagram post of dusk & dawn</p>
+                        <div class="task-status">Completed</div>
+                    </div>
+                    <div class="task completed">
+                        <h4>Holi Post</h4>
+                        <p>Design Post for Holi</p>
+                        <div class="task-status">Completed</div>
+                    </div>
+                </div>
+            </div>
+            <div class="task-input">
+                <h3>Task</h3>
+                <input type="text" placeholder="Add a new task...">
+                <button>Add Task</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
