@@ -1,6 +1,9 @@
 <?php
-   include("config.php");
+   require_once ("config.php");
    session_start();
+   if (isset($_SESSION["login_user"])) {
+      header("Location: welcome.php");
+   }
    $error='';
    //checks if the form has been subitted via a POST request
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,19 +13,27 @@
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
 
       //constructs a SQL query to select a user from the admin table with matching username and passcode
-      $sql = "SELECT * FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
-
-      //result has rows of data that has matching username and password from db
-      $result = mysqli_query($db,$sql);      
-      $row = mysqli_num_rows($result);      
-      $count = mysqli_num_rows($result);
-
-      //if such username and password combination exists, send user to the welcome page.
-      if($count >= 1) {
-         $_SESSION['login_user'] = $myusername;
-         header("location: welcome.php");
+      $sql = "SELECT * FROM users WHERE username = ?";
+      $stmt = mysqli_prepare($db, $sql);
+      mysqli_stmt_bind_param($stmt, "s", $myusername);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      
+      if($result){
+         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+         if($user){
+            if (password_verify($mypassword, $user["password"])) {
+               session_start();
+               $_SESSION["login_user"] = $myusername;
+               header("location: welcome.php");
+            } else{
+               $error = "Your password is incorrect";
+            }
+         }else {
+            $error = "Your Login Name or Password is invalid";
+         }
       } else {
-         $error = "Your Login Name or Password is invalid";
+         die("Database query failed: " . mysqli_error($db));
       }
    }
 ?>
@@ -58,6 +69,7 @@
             </form>
             <div style = "font-size:20px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
          </div>
+         <div><p>Not registered yet <a href="registration.php">Register Here</a></p></div>
       </div>
    </div>
 </body>
