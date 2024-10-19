@@ -1,114 +1,85 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
+/* General global styles
+body, html {
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #f5f7fb;
+  }
+  
+  h3 {
     margin: 0;
-    display: flex;
-}
-
-.container {
-    display: flex;
-    width: 100%;
-}
-
-.sidebar {
-    background-color: #f4f4f4;
-    padding: 20px;
-    width: 250px;
-}
-
-.sidebar h2 {
-    margin: 0;
-}
-
-.sidebar ul {
+    padding: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  ul {
     list-style: none;
     padding: 0;
-}
-
-.sidebar li {
-    margin: 15px 0;
-}
-
-.upgrade {
-    margin-top: 20px;
-}
-
-.upgrade p {
     margin: 0;
-}
-
-.main-content {
-    flex: 1;
-    padding: 20px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.progress-bar {
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    height: 20px;
-    margin: 20px 0;
-    overflow: hidden;
-}
-
-.progress-bar div {
-    background-color: #4caf50;
-    height: 100%;
-    text-align: center;
+  }
+  
+  li {
+    padding: 10px 0;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #6C63FF;
     color: white;
-    line-height: 20px;
-}
-
-.board {
-    display: flex;
-    justify-content: space-between;
-}
-
-.column {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 5px;
-    padding: 10px;
-    width: 30%;
-}
-
-.column h3 {
-    margin: 0 0 10px 0;
-}
-
-.task {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.task.completed {
-    background-color: #d4edda;
-}
-
-.task-status, .task-timer {
-    font-size: 0.9em;
-    color: gray;
-}
-
-.task-input {
-    margin-top: 20px;
-}
-
-.task-input input {
-    width: 80%;
-    padding: 10px;
-}
-
-.task-input button {
-    padding: 10px;
-}
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #5953d7;
+  }
+   */
+   
+   @import 'tailwindcss/base';
+   @import 'tailwindcss/components';
+   @import 'tailwindcss/utilities';
+   
+   body {
+     font-family: 'Inter', sans-serif;
+   }
+   
+   .task-column {
+     transition: all 0.3s ease;
+   }
+   
+   .task-column:hover {
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+   
+   .task-card {
+     transition: all 0.2s ease;
+   }
+   
+   .task-card:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+   }
+   
+   .calendar-day {
+     transition: background-color 0.2s ease;
+   }
+   
+   .calendar-day:hover:not(.selected) {
+     background-color: #f3f4f6;
+   }
+   
+   .calendar-day.selected {
+     background-color: #4f46e5;
+     color: white;
+   }
+   
+   .event-item {
+     transition: all 0.2s ease;
+   }
+   
+   .event-item:hover {
+     background-color: #f3f4f6;
+   }
