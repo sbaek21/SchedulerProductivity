@@ -1,106 +1,340 @@
-import './index.css';
-import React from 'react';
+// import React, { useState } from 'react';
+// import Header from './components/Header';
+// import Sidebar from './components/Sidebar';
+// import TaskColumn from './components/TaskColumn';
+// import Calendar from './components/Calendar';
+// import Events from './components/Events';
+// import TaskModal from './components/TaskModal';
+
+// const TaskMaster: React.FC = () => {
+//   const [showModal, setShowModal] = useState(false);
+//   const [taskToEdit, setTaskToEdit] = useState(null);
+//   const [tasks, setTasks] = useState([
+//     { id: 1, status: 'Not Started', title: 'ECE 374 Assignment', description: 'Backtracking and Dynamic Programming', dueDate: '23 Mar 2024', dueTime: '1:30 pm' },
+//     // Add other existing tasks with unique IDs
+//   ]);
+
+//   const handleAddTask = () => {
+//     setTaskToEdit(null); // Reset to add a new task
+//     setShowModal(true);
+//   };
+
+//   const handleEditTask = (task) => {
+//     setTaskToEdit(task); // Set task for editing
+//     setShowModal(true);
+//   };
+
+//   const handleSaveTask = (newTask) => {
+//     if (taskToEdit) {
+//       setTasks(tasks.map(task => (task.id === taskToEdit.id ? { ...task, ...newTask } : task)));
+//     } else {
+//       setTasks([...tasks, { ...newTask, id: tasks.length + 1 }]);
+//     }
+//     setShowModal(false);
+//   };
+
+//   const handleCloseModal = () => setShowModal(false);
+
+//   return (
+//     <main className="flex flex-col px-6 pt-9 bg-white rounded-lg">
+//       <Header />
+//       <div className="flex gap-10 mt-3 ml-3.5">
+//         <Sidebar />
+//         <div className="flex-auto">
+//           <div className="flex gap-5">
+//             <TaskColumn
+//               title="Not Started"
+//               count={tasks.filter(t => t.status === 'Not Started').length}
+//               tasks={tasks.filter(t => t.status === 'Not Started')}
+//               onEditTask={handleEditTask}
+//             />
+//             <TaskColumn
+//               title="In Progress"
+//               count={tasks.filter(t => t.status === 'In Progress').length}
+//               tasks={tasks.filter(t => t.status === 'In Progress')}
+//               onEditTask={handleEditTask}
+//             />
+//             <TaskColumn
+//               title="Completed"
+//               count={tasks.filter(t => t.status === 'Completed').length}
+//               tasks={tasks.filter(t => t.status === 'Completed')}
+//               onEditTask={handleEditTask}
+//             />
+//           </div>
+//           <button onClick={handleAddTask} className="mt-10 px-4 py-2 border rounded">Add Task</button>
+//         </div>
+//         <aside className="ml-5 w-[32%]">
+//           <Calendar />
+//           <Events />
+//         </aside>
+//       </div>
+//       {showModal && (
+//         <TaskModal onClose={handleCloseModal} onSave={handleSaveTask} initialData={taskToEdit} />
+//       )}
+//     </main>
+//   );
+// };
+
+// export default TaskMaster;
+
+
+// import React, { useState } from 'react';
+// import Header from './components/Header';
+// import Sidebar from './components/Sidebar';
+// import TaskColumn from './components/TaskColumn';
+// import Calendar from './components/Calendar';
+// import Events from './components/Events';
+// import TaskModal from './components/TaskModal';
+
+// const TaskMaster: React.FC = () => {
+//   const [showModal, setShowModal] = useState(false);
+//   const [taskToEdit, setTaskToEdit] = useState(null);
+//   const [tasks, setTasks] = useState([
+//     { id: 1, status: 'Not Started', title: 'ECE 374 Assignment', description: 'Backtracking and Dynamic Programming', dueDate: '23 Mar 2024', dueTime: '1:30 pm' },
+//     // Add other existing tasks with unique IDs
+//   ]);
+
+//   const handleAddTask = () => {
+//     setTaskToEdit(null); // Reset to add a new task
+//     setShowModal(true);
+//   };
+
+//   const handleEditTask = (task) => {
+//     setTaskToEdit(task); // Set task for editing
+//     setShowModal(true);
+//   };
+
+//   const handleSaveTask = (newTask) => {
+//     if (taskToEdit) {
+//       setTasks(tasks.map(task => (task.id === taskToEdit.id ? { ...task, ...newTask } : task)));
+//     } else {
+//       setTasks([...tasks, { ...newTask, id: tasks.length + 1 }]);
+//     }
+//     setShowModal(false);
+//   };
+
+//   const handleCloseModal = () => setShowModal(false);
+
+//   return (
+//     <main className="flex flex-col px-6 pt-9 bg-white rounded-lg">
+//       <Header />
+//       <div className="flex mt-3 ml-3.5 gap-5">
+//         <Sidebar />
+//         <div className="flex flex-1 gap-5" style={{ marginRight: '1rem' }}>
+//           <div className="flex w-full gap-5">
+//             <TaskColumn
+//               title="Not Started"
+//               count={tasks.filter(t => t.status === 'Not Started').length}
+//               tasks={tasks.filter(t => t.status === 'Not Started')}
+//               onEditTask={handleEditTask}
+//             />
+//             <TaskColumn
+//               title="In Progress"
+//               count={tasks.filter(t => t.status === 'In Progress').length}
+//               tasks={tasks.filter(t => t.status === 'In Progress')}
+//               onEditTask={handleEditTask}
+//             />
+//             <TaskColumn
+//               title="Completed"
+//               count={tasks.filter(t => t.status === 'Completed').length}
+//               tasks={tasks.filter(t => t.status === 'Completed')}
+//               onEditTask={handleEditTask}
+//             />
+//           </div>
+//           <aside className="w-[30%]">
+//             <Calendar />
+//             <Events />
+//           </aside>
+//         </div>
+//       </div>
+//       {showModal && (
+//         <TaskModal onClose={handleCloseModal} onSave={handleSaveTask} initialData={taskToEdit} />
+//       )}
+//     </main>
+//   );
+// };
+
+// export default TaskMaster;
+
+
+// import React, { useState } from 'react';
+// import Header from './components/Header';
+// import Sidebar from './components/Sidebar';
+// import TaskColumn from './components/TaskColumn';
+// import Calendar from './components/Calendar';
+// import Events from './components/Events';
+// import TaskModal from './components/TaskModal';
+
+// const TaskMaster: React.FC = () => {
+//   const [showModal, setShowModal] = useState(false);
+//   const [taskToEdit, setTaskToEdit] = useState(null);
+//   const [tasks, setTasks] = useState([
+//     { id: 1, status: 'Not Started', title: 'ECE 374 Assignment', description: 'Backtracking and Dynamic Programming', dueDate: '23 Mar 2024', dueTime: '1:30 pm' },
+//     // Add other existing tasks with unique IDs
+//   ]);
+
+//   const handleAddTask = () => {
+//     setTaskToEdit(null); // Reset to add a new task
+//     setShowModal(true);
+//   };
+
+//   const handleEditTask = (task) => {
+//     setTaskToEdit(task); // Set task for editing
+//     setShowModal(true);
+//   };
+
+//   const handleSaveTask = (newTask) => {
+//     if (taskToEdit) {
+//       setTasks(tasks.map(task => (task.id === taskToEdit.id ? { ...task, ...newTask } : task)));
+//     } else {
+//       setTasks([...tasks, { ...newTask, id: tasks.length + 1 }]);
+//     }
+//     setShowModal(false);
+//   };
+
+//   const handleCloseModal = () => setShowModal(false);
+
+//   return (
+//     <main className="flex flex-col px-6 pt-9 bg-white rounded-lg">
+//       <Header />
+//       <div className="flex mt-3 ml-3.5 gap-5">
+//         <Sidebar />
+//         <div className="flex-auto">
+//           <div className="flex gap-5">
+//             <TaskColumn
+//               title="Not Started"
+//               count={tasks.filter(t => t.status === 'Not Started').length}
+//               tasks={tasks.filter(t => t.status === 'Not Started')}
+//               onEditTask={handleEditTask}
+//             />
+//             <TaskColumn
+//               title="In Progress"
+//               count={tasks.filter(t => t.status === 'In Progress').length}
+//               tasks={tasks.filter(t => t.status === 'In Progress')}
+//               onEditTask={handleEditTask}
+//             />
+//             <TaskColumn
+//               title="Completed"
+//               count={tasks.filter(t => t.status === 'Completed').length}
+//               tasks={tasks.filter(t => t.status === 'Completed')}
+//               onEditTask={handleEditTask}
+//             />
+//           </div>
+          
+//           {/* Centered Add Task Button */}
+//           <div className="flex justify-center mt-6">
+//             <button onClick={handleAddTask} className="px-6 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">Add Task</button>
+//           </div>
+//         </div>
+
+//         <aside className="ml-5 w-[32%]">
+//           <Calendar />
+//           <Events />
+//         </aside>
+//       </div>
+
+//       {showModal && (
+//         <TaskModal onClose={handleCloseModal} onSave={handleSaveTask} initialData={taskToEdit} />
+//       )}
+//     </main>
+//   );
+// };
+
+// export default TaskMaster;
+
+
+
+
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import TaskColumn from './components/TaskColumn';
 import Calendar from './components/Calendar';
 import Events from './components/Events';
+import TaskModal from './components/TaskModal';
+import { Task } from './types'; // Import Task type
 
 const TaskMaster: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      id: 1,
+      status: 'Not Started',
+      title: 'ECE 374 Assignment',
+      description: 'Backtracking and Dynamic Programming',
+      dueDate: '23 Mar 2024',
+      dueTime: '1:30 pm',
+    },
+  ]);
+
+  const handleAddTask = () => {
+    setTaskToEdit(null);
+    setShowModal(true);
+  };
+
+  const handleEditTask = (task: Task) => {
+    setTaskToEdit(task);
+    setShowModal(true);
+  };
+
+  const handleSaveTask = (newTask: Task) => {
+    if (taskToEdit) {
+      setTasks(tasks.map(task => (task.id === taskToEdit.id ? { ...task, ...newTask } : task)));
+    } else {
+      setTasks([...tasks, { ...newTask, id: tasks.length + 1 }]);
+    }
+    setShowModal(false);
+  };
+
+  const handleDeleteTask = (taskId: number) => {
+    setTasks(tasks.filter(task => task.id !== taskId));
+  };
+
+  const handleCloseModal = () => setShowModal(false);
+
   return (
-    <main className="flex overflow-hidden flex-col px-6 pt-9 bg-white rounded-[36px] max-md:pl-5">
+    <main className="flex flex-col px-6 pt-8 bg-white rounded-lg">
       <Header />
-      <div className="flex gap-10 mt-3 ml-3.5 w-full max-md:flex-col">
+      <div className="flex mt-4 ml-8 gap-6">
         <Sidebar />
-        <div className="flex-auto max-md:max-w-full">
-          <div className="flex gap-5 max-md:flex-col">
-            <TaskColumn
-              title="Not Started"
-              count={2}
-              tasks={[
-                {
-                  status: 'Not Started',
-                  title: 'ECE 374 Assignment',
-                  description: 'Backtracking and Dynamic Programming',
-                  dueDate: '23 Mar 2024',
-                  dueTime: '1:30 pm'
-                },
-                {
-                  status: 'Not Started',
-                  title: 'Stat Assignment',
-                  description: 'HW5',
-                  dueDate: '25 Mar 2024',
-                  dueTime: '1:30 pm'
-                },
-                {
-                  status: 'Not Started',
-                  title: 'Brainstorming',
-                  description: 'Brainstorming with team on storlly app',
-                  dueDate: '26 Mar 2024',
-                  dueTime: '12:45 pm'
-                }
-              ]}
-            />
-            <TaskColumn
-              title="In Progress"
-              count={3}
-              tasks={[
-                {
-                  status: '58 Min Left',
-                  title: 'Discussion Homework',
-                  description: 'Discussion on re-branding of dermo Brand',
-                  dueDate: '23 Mar 2024',
-                  dueTime: '1:30 pm'
-                },
-                {
-                  status: '12 Min Left',
-                  title: 'Brainstorming',
-                  description: 'Brainstorming with team on storlly app',
-                  dueDate: '24 Mar 2024',
-                  dueTime: '12:45 pm'
-                },
-                {
-                  status: '2 Days Left',
-                  title: 'UI/UX testing',
-                  description: 'Perform user Testing on product',
-                  dueDate: '25 Mar 2024',
-                  dueTime: '10:00 am'
-                }
-              ]}
-            />
-            <TaskColumn
-              title="Completed"
-              count={2}
-              tasks={[
-                {
-                  status: 'Completed',
-                  title: 'Schedule Post',
-                  description: 'schedule instagram post of dust & dawn'
-                },
-                {
-                  status: 'Completed',
-                  title: 'Holi Post',
-                  description: 'Design Post for Holi'
-                }
-              ]}
-            />
-          </div>
-          <button className="flex overflow-hidden flex-wrap gap-1.5 justify-center items-center py-1.5 pr-3.5 pl-3 mt-24 text-xs font-medium tracking-normal leading-loose bg-white rounded-md border-solid border-[0.5px] border-zinc-400 text-zinc-400 max-md:mt-10 max-md:mr-1.5">
-            <img loading="lazy" src="http://b.io/ext_54-" alt="" className="object-contain shrink-0 self-stretch my-auto w-4 aspect-square" />
-            <span>Add Task</span>
-          </button>
+        <div className="flex-auto flex gap-5">
+          <TaskColumn
+            title="Not Started"
+            count={tasks.filter(t => t.status === 'Not Started').length}
+            tasks={tasks.filter(t => t.status === 'Not Started')}
+            onEditTask={handleEditTask}
+            onDeleteTask={handleDeleteTask}
+            className="flex-1 min-w-[280px]"
+          />
+          <TaskColumn
+            title="In Progress"
+            count={tasks.filter(t => t.status === 'In Progress').length}
+            tasks={tasks.filter(t => t.status === 'In Progress')}
+            onEditTask={handleEditTask}
+            onDeleteTask={handleDeleteTask}
+            className="flex-1 min-w-[280px]"
+          />
+          <TaskColumn
+            title="Completed"
+            count={tasks.filter(t => t.status === 'Completed').length}
+            tasks={tasks.filter(t => t.status === 'Completed')}
+            onEditTask={handleEditTask}
+            onDeleteTask={handleDeleteTask}
+            className="flex-1 min-w-[280px]"
+          />
         </div>
-        <aside className="flex flex-col ml-5 w-[32%] max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col mt-7 w-full max-md:mt-10">
-            <div className="flex gap-6 items-start self-end mr-7 max-md:mr-2.5">
-              <img loading="lazy" src="http://b.io/ext_55-" alt="" className="object-contain shrink-0 w-6 aspect-square" />
-              <img loading="lazy" src="http://b.io/ext_56-" alt="" className="object-contain shrink-0 w-6 aspect-square" />
-              <img loading="lazy" src="http://b.io/ext_57-" alt="" className="object-contain shrink-0 w-6 aspect-square" />
-            </div>
-            <Calendar />
-            <Events />
-          </div>
+        
+        <aside className="w-[260px] ml-6">
+          <Calendar />
+          <Events className="mt-6" />
         </aside>
+      </div>
+      {showModal && (
+        <TaskModal onClose={handleCloseModal} onSave={handleSaveTask} initialData={taskToEdit} />
+      )}
+      <div className="flex justify-center mt-6">
+        <button onClick={handleAddTask} className="px-6 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">Add Task</button>
       </div>
     </main>
   );
