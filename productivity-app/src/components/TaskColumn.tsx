@@ -63,10 +63,8 @@
 
 // export default TaskColumn;
 
-
-
-import React from 'react';
-import TaskCard from './TaskCard';
+import React from "react";
+import TaskCard from "./TaskCard";
 
 interface Task {
   id: number;
@@ -86,18 +84,23 @@ interface TaskColumnProps {
   className?: string;
 }
 
-
-const TaskColumn: React.FC<TaskColumnProps> = ({ title, count, tasks, onEditTask, onDeleteTask }) => {
+const TaskColumn: React.FC<TaskColumnProps> = ({
+  title,
+  count,
+  tasks,
+  onEditTask,
+  onDeleteTask,
+}) => {
   const getStatusColor = () => {
     switch (title) {
-      case 'Not Started':
-        return '#5030E5';
-      case 'In Progress':
-        return '#FB9318';
-      case 'Completed':
-        return '#30E578';
+      case "Not Started":
+        return "#5030E5";
+      case "In Progress":
+        return "#FB9318";
+      case "Completed":
+        return "#30E578";
       default:
-        return '#5030E5';
+        return "#5030E5";
     }
   };
 
@@ -106,11 +109,18 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ title, count, tasks, onEditTask
       <div className="flex justify-between items-center mb-2">
         <div className="text-xs font-medium text-slate-900 flex items-center gap-1">
           <span>{title}</span>
-          <span className="bg-gray-300 text-gray-600 rounded-full px-2">{count}</span>
+          <span className="bg-gray-300 text-gray-600 rounded-full px-2">
+            {count}
+          </span>
         </div>
-        <div className="text-xl font-bold text-gray-500 cursor-pointer">...</div>
+        <div className="text-xl font-bold text-gray-500 cursor-pointer">
+          ...
+        </div>
       </div>
-      <div className="h-1 w-full rounded-full mb-4" style={{ backgroundColor: getStatusColor() }}></div>
+      <div
+        className="h-1 w-full rounded-full mb-4"
+        style={{ backgroundColor: getStatusColor() }}
+      ></div>
 
       <div className="flex-grow flex flex-col items-center space-y-2">
         {tasks.map((task) => (
@@ -118,9 +128,9 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ title, count, tasks, onEditTask
             key={task.id}
             title={task.title}
             description={task.description}
-            dueDate={task.dueDate || ''}
-            dueTime={task.dueTime || ''}
-            status={task.status as 'Not Started' | 'In Progress' | 'Completed'}
+            dueDate={task.dueDate || ""}
+            dueTime={task.dueTime || ""}
+            status={task.status as "Not Started" | "In Progress" | "Completed"}
             onEdit={() => onEditTask(task)}
             onDelete={() => onDeleteTask(task.id)} // Pass onDelete function to TaskCard
           />
