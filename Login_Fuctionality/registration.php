@@ -18,53 +18,61 @@ if (isset($_SESSION["user"])) {
     <div class="container">
         <?php
         if (isset($_POST["submit"])) {
-           $username = $_POST["username"];
-        //    $email = $_POST["email"];
-           $password = $_POST["password"];
-        //    $passwordRepeat = $_POST["repeat_password"];
+            $username = $_POST["username"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $passwordRepeat = $_POST["repeat_password"];
            
-           $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-           $errors = array();
+            $errors = array();
            
-           if (empty($username) OR empty($password)) {
-            array_push($errors,"All fields are required");
-           }
-        //    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        //     array_push($errors, "Email is not valid");
-        //    }
-           if (strlen($password)<8) {
-            array_push($errors,"Password must be at least 8 charactes long");
-           }
-        //    if ($password!==$passwordRepeat) {
-        //     array_push($errors,"Password does not match");
-        //    }
-           require_once "config.php";
-        //    $sql = "SELECT * FROM users WHERE email = '$email'";
-        //    $result = mysqli_query($conn, $sql);
-        //    $rowCount = mysqli_num_rows($result);
-        //    if ($rowCount>0) {
-        //     array_push($errors,"Email already exists!");
-        //    }
-           if (count($errors)>0) {
-            foreach ($errors as  $error) {
-                echo "<div class='alert alert-danger'>$error</div>";
+            if (empty($username) OR empty($password)) {
+                array_push($errors,"All fields are required");
             }
-           }else{
-            
-            $sql = "INSERT INTO users (username, password) VALUES ( ?, ? )";
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                array_push($errors, "Email is not valid");
+            }
+            if (strlen($password)<8) {
+                array_push($errors,"Password must be at least 8 charactes long");
+            }
+            if ($password!==$passwordRepeat) {
+                array_push($errors,"Password does not match");
+            }
+            require_once "config.php";
+            $sql = "SELECT * FROM users WHERE email = ?";
             $stmt = mysqli_stmt_init($db);
-            $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
-            if ($prepareStmt) {
-                mysqli_stmt_bind_param($stmt,"ss",$username, $passwordHash);
+            $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
+            if($prepareStmt){
+                mysqli_stmt_bind_param($stmt, "s", $email);
                 mysqli_stmt_execute($stmt);
-                $_SESSION["login_user"] = $username;
-                header("location: welcome.php");
-
-            }else{
+                $result = mysqli_query($conn, $sql);
+            } else {
                 die("Something went wrong");
             }
-           }
+            $rowCount = mysqli_num_rows($result);
+            if ($rowCount>0) {
+                array_push($errors,"Email already exists!");
+            }
+            if (count($errors)>0) {
+                foreach ($errors as  $error) {
+                    echo "<div class='alert alert-danger'>$error</div>";
+                }
+            }else{
+            
+                $sql = "INSERT INTO users (username, password) VALUES ( ?, ? )";
+                $stmt = mysqli_stmt_init($db);
+                $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
+                if ($prepareStmt) {
+                    mysqli_stmt_bind_param($stmt,"ss",$username, $passwordHash);
+                    mysqli_stmt_execute($stmt);
+                    $_SESSION["login_user"] = $username;
+                    header("location: welcome.php");
+
+                }else{
+                    die("Something went wrong");
+                }
+            }
           
 
         }
@@ -73,15 +81,15 @@ if (isset($_SESSION["user"])) {
             <div class="form-group">
                 <input type="text" class="form-control" name="username" placeholder="Username:">
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <input type="emamil" class="form-control" name="email" placeholder="Email:">
-            </div> -->
+            </div>
             <div class="form-group">
                 <input type="password" class="form-control" name="password" placeholder="Password:">
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <input type="password" class="form-control" name="repeat_password" placeholder="Repeat Password:">
-            </div> -->
+            </div>
             <div class="form-btn">
                 <input type="submit" class="btn btn-primary" value="Register" name="submit">
             </div>
