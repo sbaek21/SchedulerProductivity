@@ -45,14 +45,14 @@ const Header: React.FC<HeaderProps> = () => {
       <div className="flex flex-wrap gap-10 items-center max-md:max-w-full">
         <div className="flex gap-4 justify-between items-center self-stretch my-auto text-xl font-semibold whitespace-nowrap text-slate-900 w-[190px]">
           <div className="flex gap-2.5 items-center self-stretch my-auto">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/852f72b99e5a350e59de14c7063d40466f7a2f7466f564688944089a47dd54b7?placeholderIfAbsent=true&apiKey=4d7ed1808eb74d2f86f62f752e04c537" alt="" className="object-contain shrink-0 self-stretch my-auto w-6 aspect-square" />
+            <img loading="lazy" src="src/assets/logo.png" alt="" className="object-contain shrink-0 self-stretch my-auto w-6 aspect-square" />
             <div className="self-stretch my-auto rounded-none w-[114px]">TaskMaster</div>
           </div>
-          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/48bba33637b3c3fd221d82974f5d8919933387a51988b180ae345c9d62d1cfcf?placeholderIfAbsent=true&apiKey=4d7ed1808eb74d2f86f62f752e04c537" alt="" className="object-contain shrink-0 self-stretch my-auto aspect-[1.3] w-[26px]" />
+          <img loading="lazy" src="src/assets/leftarrows.png" alt="" className="object-contain shrink-0 self-stretch my-auto aspect-[1.3] w-[26px]" />
         </div>
         <form className="flex flex-col self-stretch my-auto text-sm rounded-none min-w-[240px] text-zinc-500 w-[417px]">
           <div className="flex gap-4 px-4 py-3 rounded-md bg-neutral-100">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6120225949d96b29eb8812d4888daf12838fa229a01d9561667992a8b60a252b?placeholderIfAbsent=true&apiKey=4d7ed1808eb74d2f86f62f752e04c537" alt="" className="object-contain shrink-0 aspect-square w-[22px]" />
+            <img loading="lazy" src="src/assets/search.png" alt="" className="object-contain shrink-0 aspect-square w-[22px]" />
             <input type="search" placeholder="Search for anything..." aria-label="Search for anything" className="flex-auto my-auto w-[341px] bg-transparent border-none focus:outline-none" />
           </div>
         </form>
