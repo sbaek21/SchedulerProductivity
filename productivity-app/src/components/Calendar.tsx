@@ -11,8 +11,8 @@ const Calendar: React.FC = () => {
       <div className="flex gap-5 justify-between mt-6 w-full max-w-[241px]">
         <div className="text-sm font-bold text-center text-zinc-800">October 2024</div>
         <div className="flex gap-2.5 items-center my-auto">
-          <img loading="lazy" src="http://b.io/ext_72-" alt="" className="object-contain shrink-0 self-stretch my-auto aspect-square stroke-[1.183px] stroke-zinc-800 w-[7px]" />
-          <img loading="lazy" src="http://b.io/ext_73-" alt="" className="object-contain shrink-0 self-stretch my-auto aspect-square stroke-[1.183px] stroke-zinc-800 w-[7px]" />
+          <img loading="lazy" /*src="http://b.io/ext_72-" 이 b.io/어쩌구 하는 링크는 다 작동 안하는듯*/ alt="" className="object-contain shrink-0 self-stretch my-auto aspect-square stroke-[1.183px] stroke-zinc-800 w-[7px]" />
+          <img loading="lazy" /*src="http://b.io/ext_73-"*/ alt="" className="object-contain shrink-0 self-stretch my-auto aspect-square stroke-[1.183px] stroke-zinc-800 w-[7px]" />
         </div>
       </div>
       <div className="flex overflow-hidden flex-col items-center mt-6 max-w-full text-sm font-medium text-center whitespace-nowrap w-[245px]">

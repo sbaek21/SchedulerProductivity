@@ -1,3 +1,6 @@
+//대충 얘가 메인 function
+//얘가 html 다 만든다고 생각하면 될듯?
+
 import './index.css';
 import React from 'react';
 import Header from './components/Header';
@@ -16,7 +19,7 @@ const TaskMaster: React.FC = () => {
           <div className="flex gap-5 max-md:flex-col">
             <TaskColumn
               title="Not Started"
-              count={2}
+              count={3}
               tasks={[
                 {
                   status: 'Not Started',
@@ -86,7 +89,7 @@ const TaskMaster: React.FC = () => {
             />
           </div>
           <button className="flex overflow-hidden flex-wrap gap-1.5 justify-center items-center py-1.5 pr-3.5 pl-3 mt-24 text-xs font-medium tracking-normal leading-loose bg-white rounded-md border-solid border-[0.5px] border-zinc-400 text-zinc-400 max-md:mt-10 max-md:mr-1.5">
-            <img loading="lazy" src="http://b.io/ext_54-" alt="" className="object-contain shrink-0 self-stretch my-auto w-4 aspect-square" />
+            <img loading="lazy" /*src="http://b.io/ext_54-"  <- add image file later*/ alt="" className="object-contain shrink-0 self-stretch my-auto w-4 aspect-square" />
             <span>Add Task</span>
           </button>
         </div>
