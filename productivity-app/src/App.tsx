@@ -244,21 +244,20 @@
 
 import React, { useEffect, useState } from 'react';
 import TaskMaster from './components/TaskMaster';
+import { Task } from './types'; // Import your Task type
 
 function App() {
-  const [data, setData] = useState<any[]>([]); // Adjust type as needed
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:8081/tasks')
       .then(res => res.json())
-      .then(data => setData(data))
+      .then(data => setTasks(data))
       .catch(err => console.log(err));
   }, []);
 
   return (
-    <TaskMaster>
-      
-    </TaskMaster>
+    <TaskMaster tasks={tasks} setTasks={setTasks} />
   );
 }
 
