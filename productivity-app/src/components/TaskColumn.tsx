@@ -68,10 +68,11 @@
 import React from 'react';
 import TaskCard from './TaskCard';
 
-interface Task {
-  id: number;
-  status: string;
+export interface Task {
+  id: number; // or string depending on your backend
   title: string;
+  status: 'Not Started' | 'In Progress' | 'Completed';
+  // Add other properties as needed
   description: string;
   dueDate?: string;
   dueTime?: string;
