@@ -7,15 +7,14 @@ import timeIcon from '../assets/icon_time.png';
 import {Task} from '../types'
 
 interface TaskCardProps {
-  key: number;
   task: Task;
-  taskEditClicked: () => void;
-  taskDeleteClicked: () => void; // Add onDelete prop
+  taskEditClicked: (task: Task) => void;
+  taskDeleteClicked: (id: number) => void; // Add onDelete prop
 }
 
 
 
-const TaskCard: React.FC<TaskCardProps> = ({ key, task, taskEditClicked, taskDeleteClicked }) => {
+const TaskCard: React.FC<TaskCardProps> = ({ task, taskEditClicked, taskDeleteClicked }) => {
   const getStatusLabel = () => {
     switch (task.status) {
       case 'Not Started':
@@ -48,8 +47,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ key, task, taskEditClicked, taskDel
           {getStatusLabel()}
         </div>
         <div className="flex gap-2">
-          <img src={editTaskIcon} alt="Edit Icon" className="w-4 h-4 cursor-pointer" onClick={taskEditClicked} />
-          <img src={binIcon} alt="Delete Icon" className="w-4 h-4 cursor-pointer" onClick={taskDeleteClicked} /> 
+          <img src={editTaskIcon} alt="Edit Icon" className="w-4 h-4 cursor-pointer" onClick={() => taskEditClicked(task)} />
+          <img src={binIcon} alt="Delete Icon" className="w-4 h-4 cursor-pointer" onClick={() => taskDeleteClicked(task.id)} /> 
         </div>
       </div>
       <div className="mt-3 w-full text-sm font-semibold">{task.title}</div>

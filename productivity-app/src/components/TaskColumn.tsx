@@ -42,8 +42,8 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ title, count, tasks, taskEditCl
           <TaskCard
             key = {task.id}
             task = {task}
-            taskEditClicked={() => taskEditClicked(task)}
-            taskDeleteClicked={() => taskDeleteClicked(task.id)} // Pass onDelete function to TaskCard
+            taskEditClicked={taskEditClicked}
+            taskDeleteClicked={taskDeleteClicked} // Pass onDelete function to TaskCard
           />
         ))}
       </div>
