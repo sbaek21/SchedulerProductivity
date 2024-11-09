@@ -47,6 +47,7 @@ app.put('/tasks/:id', (req, res) => {
         }
         // Optionally fetch the updated task from the database and return it
         db.query('SELECT * FROM tasks WHERE id = ?', [id], (err, results) => {
+            console.log("check")
             if (err) {
                 return res.status(500).send(err);
             }

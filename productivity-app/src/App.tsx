@@ -242,7 +242,7 @@
 
 // export default TaskMaster;
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TaskMaster from './components/TaskMaster';
 import { Task } from './types'; // Import your Task type
 
@@ -254,7 +254,7 @@ function App() {
       .then(res => res.json())
       .then(data => setTasks(data))
       .catch(err => console.log(err));
-  }, []);
+  }, [tasks]);
 
   return (
     <TaskMaster tasks={tasks} setTasks={setTasks} />
