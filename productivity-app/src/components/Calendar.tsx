@@ -305,8 +305,4 @@ const GoogleCalendarIntegration = () => {
   );
 };
 
-<<<<<<< Updated upstream
-export default Calendar;
-=======
 export default GoogleCalendarIntegration;
->>>>>>> Stashed changes

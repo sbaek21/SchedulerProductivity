@@ -1,28 +1,47 @@
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
+// import { Task } from '../types';
 
-// interface TaskModalProps {
+// interface TaskEditModalProps {
 //   onClose: () => void;
-//   onSave: (task: { title: string; description: string; dueDate: string; dueTime: string; status: string }) => void;
+//   onSave: (task: Task) => void;
+//   initialData: Task;
 // }
 
-// const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave }) => {
+// const TaskEditModal: React.FC<TaskEditModalProps> = ({ onClose, onSave, initialData }) => {
 //   const [title, setTitle] = useState('');
 //   const [description, setDescription] = useState('');
 //   const [dueDate, setDueDate] = useState('');
 //   const [dueTime, setDueTime] = useState('');
 //   const [status, setStatus] = useState('Not Started');
 
+//   useEffect(() => {
+//       setTitle(initialData.title);
+//       setDescription(initialData.description);
+//       setDueDate(initialData.dueDate);
+//       setDueTime(initialData.dueTime);
+//       setStatus(initialData.status);
+//   },[]);
+
 //   const handleSave = () => {
-//     onSave({ title, description, dueDate, dueTime, status });
+//     const task: Task = {
+//       id: initialData.id,
+//       title: title,
+//       description: description,
+//       dueDate: dueDate,
+//       dueTime: dueTime,
+//       status: status as 'Not Started' | 'In Progress' | 'Completed'
+//     }
+//     console.log(task.title, task.description);
+//     onSave(task);
 //     onClose();
 //   };
 
 //   return (
 //     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 //       <div className="bg-white p-6 rounded-lg max-w-md w-full shadow-lg">
-//         <h2 className="text-lg font-semibold mb-4 text-gray-800">Add Task</h2>
+//         <h2 className="text-lg font-semibold mb-4 text-gray-800">Edit Task</h2>
 
-//         <label className="block text-sm font-medium text-gray-700">Task Name:</label>
+//         <label className="block text-sm font-medium text-gray-700">Task Title:</label>
 //         <input
 //           type="text"
 //           value={title}
@@ -41,7 +60,7 @@
 //         <label className="block text-sm font-medium text-gray-700 mt-4">Status:</label>
 //         <select
 //           value={status}
-//           onChange={(e) => setStatus(e.target.value)}
+//           onChange={(e) => setStatus(e.target.value as 'Not Started' | 'In Progress' | 'Completed')}
 //           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
 //         >
 //           <option value="Not Started">Not Started</option>
@@ -84,45 +103,60 @@
 //   );
 // };
 
-// export default TaskModal;
+// export default TaskEditModal;
 
+import React, { useState, useEffect } from "react";
+import { Task } from "../types";
 
-import React, { useState, useEffect } from 'react';
-
-interface TaskModalProps {
+interface TaskEditModalProps {
   onClose: () => void;
-  onSave: (task: { title: string; description: string; dueDate: string; dueTime: string; status: string }) => void;
-  initialData?: { title: string; description: string; dueDate: string; dueTime: string; status: string };
+  onSave: (task: Task) => void;
+  initialData: Task;
 }
 
-const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave, initialData }) => {
-  const [title, setTitle] = useState(initialData?.title || '');
-  const [description, setDescription] = useState(initialData?.description || '');
-  const [dueDate, setDueDate] = useState(initialData?.dueDate || '');
-  const [dueTime, setDueTime] = useState(initialData?.dueTime || '');
-  const [status, setStatus] = useState(initialData?.status || 'Not Started');
+const TaskEditModal: React.FC<TaskEditModalProps> = ({
+  onClose,
+  onSave,
+  initialData,
+}) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState(""); // Always a string
+  const [dueTime, setDueTime] = useState("");
+  const [status, setStatus] = useState<
+    "Not Started" | "In Progress" | "Completed"
+  >("Not Started");
 
   useEffect(() => {
-    if (initialData) {
-      setTitle(initialData.title);
-      setDescription(initialData.description);
-      setDueDate(initialData.dueDate);
-      setDueTime(initialData.dueTime);
-      setStatus(initialData.status);
-    }
+    setTitle(initialData.title || ""); // Default to an empty string if null/undefined
+    setDescription(initialData.description || ""); // Default to an empty string if null/undefined
+    setDueDate(initialData.dueDate || ""); // Default to an empty string if null/undefined
+    setDueTime(initialData.dueTime || ""); // Default to an empty string if null/undefined
+    setStatus(initialData.status || "Not Started"); // Default to 'Not Started'
   }, [initialData]);
 
   const handleSave = () => {
-    onSave({ title, description, dueDate, dueTime, status });
+    const task: Task = {
+      id: initialData.id,
+      title,
+      description,
+      dueDate: dueDate || null, // Convert empty string back to null for backend
+      dueTime: dueTime || null, // Convert empty string back to null for backend
+      status,
+    };
+    console.log(task.title, task.description);
+    onSave(task);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg max-w-md w-full shadow-lg">
-        <h2 className="text-lg font-semibold mb-4 text-gray-800">Add Task</h2>
+        <h2 className="text-lg font-semibold mb-4 text-gray-800">Edit Task</h2>
 
-        <label className="block text-sm font-medium text-gray-700">Task Name:</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Task Title:
+        </label>
         <input
           type="text"
           value={title}
@@ -130,7 +164,9 @@ const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave, initialData }) =
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
         />
 
-        <label className="block text-sm font-medium text-gray-700 mt-4">Description:</label>
+        <label className="block text-sm font-medium text-gray-700 mt-4">
+          Description:
+        </label>
         <input
           type="text"
           value={description}
@@ -138,10 +174,16 @@ const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave, initialData }) =
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
         />
 
-        <label className="block text-sm font-medium text-gray-700 mt-4">Status:</label>
+        <label className="block text-sm font-medium text-gray-700 mt-4">
+          Status:
+        </label>
         <select
           value={status}
-          onChange={(e) => setStatus(e.target.value)}
+          onChange={(e) =>
+            setStatus(
+              e.target.value as "Not Started" | "In Progress" | "Completed"
+            )
+          }
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
         >
           <option value="Not Started">Not Started</option>
@@ -149,7 +191,9 @@ const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave, initialData }) =
           <option value="Completed">Completed</option>
         </select>
 
-        <label className="block text-sm font-medium text-gray-700 mt-4">Due Date:</label>
+        <label className="block text-sm font-medium text-gray-700 mt-4">
+          Due Date:
+        </label>
         <input
           type="date"
           value={dueDate}
@@ -157,7 +201,9 @@ const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave, initialData }) =
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
         />
 
-        <label className="block text-sm font-medium text-gray-700 mt-4">Due Time:</label>
+        <label className="block text-sm font-medium text-gray-700 mt-4">
+          Due Time:
+        </label>
         <input
           type="time"
           value={dueTime}
@@ -184,4 +230,4 @@ const TaskModal: React.FC<TaskModalProps> = ({ onClose, onSave, initialData }) =
   );
 };
 
-export default TaskModal;
+export default TaskEditModal;
