@@ -26,28 +26,67 @@ app.get('/tasks', (req, res) => {
     });
 });
 
+// app.post('/tasks', (req, res) => {
+//     const { title, description, dueDate, dueTime, status } = req.body;
+//     const sql = 'INSERT INTO tasks (title, description, dueDate, dueTime, status) VALUES (?, ?, ?, ?, ?)';
+//     db.query(sql, [title, description, dueDate, dueTime, status], (err, result) => {
+//       if (err) {
+//         return res.status(500).send(err);
+//       }
+//       res.status(201).json({ id: result.insertId });
+//     });
+//   });
+
 app.post('/tasks', (req, res) => {
     const { title, description, dueDate, dueTime, status } = req.body;
-    const sql = 'INSERT INTO tasks (title, description, dueDate, dueTime, status) VALUES (?, ?, ?, ?, ?)';
-    db.query(sql, [title, description, dueDate, dueTime, status], (err, result) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.status(201).json({ id: result.insertId });
-    });
-  });
 
-app.put('/tasks/:id', (req, res) => {
-    const { id } = req.params;
-    const { title, description, dueDate, dueTime, status } = req.body;
-    const sql = 'UPDATE tasks SET title = ?, description = ?, dueDate = ?, dueTime = ?, status = ? WHERE id = ?';
-    db.query(sql, [title, description, dueDate, dueTime, status, id], (err, result) => {
+    // Replace empty strings with null for dueDate and dueTime
+    const processedDueDate = dueDate || null;
+    const processedDueTime = dueTime || null;
+
+    const sql = 'INSERT INTO tasks (title, description, dueDate, dueTime, status) VALUES (?, ?, ?, ?, ?)';
+    db.query(sql, [title, description, processedDueDate, processedDueTime, status], (err, result) => {
         if (err) {
             return res.status(500).send(err);
         }
+        res.status(201).json({ id: result.insertId });
+    });
+});
+
+
+// app.put('/tasks/:id', (req, res) => {
+//     const { id } = req.params;
+//     const { title, description, dueDate, dueTime, status } = req.body;
+//     const sql = 'UPDATE tasks SET title = ?, description = ?, dueDate = ?, dueTime = ?, status = ? WHERE id = ?';
+//     db.query(sql, [title, description, dueDate, dueTime, status, id], (err, result) => {
+//         if (err) {
+//             return res.status(500).send(err);
+//         }
+//         // Optionally fetch the updated task from the database and return it
+//         db.query('SELECT * FROM tasks WHERE id = ?', [id], (err, results) => {
+//             if (err) {
+//                 return res.status(500).send(err);
+//             }
+//             res.json(results[0]); // Return the updated task
+//         });
+//     });
+// });
+app.put('/tasks/:id', (req, res) => {
+    const { id } = req.params;
+    const { title, description, dueDate, dueTime, status } = req.body;
+
+    // Replace empty strings with null for dueDate and dueTime
+    const processedDueDate = dueDate || null;
+    const processedDueTime = dueTime || null;
+
+    const sql = 'UPDATE tasks SET title = ?, description = ?, dueDate = ?, dueTime = ?, status = ? WHERE id = ?';
+    db.query(sql, [title, description, processedDueDate, processedDueTime, status, id], (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
         // Optionally fetch the updated task from the database and return it
         db.query('SELECT * FROM tasks WHERE id = ?', [id], (err, results) => {
-            console.log("check")
             if (err) {
                 return res.status(500).send(err);
             }
@@ -55,6 +94,7 @@ app.put('/tasks/:id', (req, res) => {
         });
     });
 });
+
 
 app.delete('/tasks/:id', (req, res) => {
 const { id } = req.params;
