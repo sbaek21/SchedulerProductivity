@@ -1,13 +1,13 @@
 import React, { useState, useEffect, } from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from '../../Header';
+import Sidebar from '../../Sidebar';
 import TaskColumn from './TaskColumn';
-import Calendar from './Calendar';
-import Events from './Events';
+import Calendar from '../Calendar/Calendar';
+import Events from '../../Events';
 import TaskEditModal from './TaskEditModal';
 import TaskAddModal from './TaskAddModal';
 import axios from 'axios';
-import { Task } from '../types'; // Import Task type
+import { Task } from '../../../types'; // Import Task type
 
 interface TaskMasterProps {
   tasks: Task[]; // Define the type for the tasks prop

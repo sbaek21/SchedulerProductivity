@@ -1,10 +1,10 @@
 import React from 'react';
-import editTaskIcon from '../assets/icon_task.png';
-import binIcon from '../assets/icon_bin.png';
-import clockIcon from '../assets/clock.png';
-import calendarIcon from '../assets/icon_calendar.png';
-import timeIcon from '../assets/icon_time.png';
-import {Task} from '../types'
+import editTaskIcon from '../../../assets/icon_task.png';
+import binIcon from '../../../assets/icon_bin.png';
+import clockIcon from '../../../assets/clock.png';
+import calendarIcon from '../../../assets/icon_calendar.png';
+import timeIcon from '../../../assets/icon_time.png';
+import {Task} from '../../../types'
 
 interface TaskCardProps {
   task: Task;
