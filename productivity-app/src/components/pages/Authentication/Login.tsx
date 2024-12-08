@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { loginUser } from './api';
+import { loginUser, AuthenticationProps } from './api';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
-const Login: React.FC = () => {
+const Login: React.FC<AuthenticationProps> = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,6 +14,7 @@ const Login: React.FC = () => {
     try {
       const response = await loginUser(username, password);
       if (response.data.message === 'Login successful') {
+        setIsAuthenticated(true)
         navigate('/task');
       }
     } catch (err: any) {
@@ -22,24 +24,40 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        /><br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /><br />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Welcome Back!</h2>
+        <p className="login-subtitle">Log in to continue</p>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+          <i className="icon-user"></i>
+          <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="login-input"
+              />
+          </div>
+          <div className="input-container">
+            <i className="icon-lock"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="login-input"
+            />
+          </div>
+          <button type="submit" className="login-button">
+            Login
+          </button>
+          </form>
+        {error && <p className="login-error">{error}</p>}
+        <p className="login-footer">
+          Don’t have an account? <a href="/sign-up">Sign Up</a>
+        </p>
+      </div>
     </div>
   );
 };

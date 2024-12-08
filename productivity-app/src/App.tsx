@@ -11,10 +11,12 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
+    Navigate
 } from "react-router-dom";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // *** Newly Added ***
 
   useEffect(() => {
     fetch('http://localhost:8081/tasks')
@@ -28,13 +30,22 @@ function App() {
       <Routes>
       <Route
           path="/"
-          element={<TaskMaster tasks={tasks} setTasks={setTasks} />}
+          element={<Navigate to={isAuthenticated ? "/task" : "/log-in"} />} 
         />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/oauth2callback" element={<OAuth2Callback />} />
-        <Route path = "/sign-up" element = {<SignUp />}/>
-        <Route path = "/log-in" element = {<LogIn />}/>
-        <Route path = "/task" element = {<TaskMaster tasks = {tasks} setTasks = {setTasks} />} />
+        <Route path = "/sign-up" element = {<SignUp setIsAuthenticated={setIsAuthenticated}/>}/>
+        <Route path = "/log-in" element = {<LogIn setIsAuthenticated={setIsAuthenticated} />}/>
+        <Route 
+          path="/task" 
+          element={
+            isAuthenticated ? (
+              <TaskMaster tasks={tasks} setTasks={setTasks} />
+            ) : (
+              <Navigate to="/log-in" />
+            )
+          } 
+        />
 
       </Routes>
     </Router>
@@ -42,5 +53,4 @@ function App() {
 }
 
 export default App;
-
 

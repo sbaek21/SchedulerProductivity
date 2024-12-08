@@ -5,6 +5,10 @@ const api = axios.create({
   withCredentials: true,
 });
 
+export interface AuthenticationProps {
+  setIsAuthenticated: (value: boolean) => void; // Accept setIsAuthenticated as a prop
+}
+
 // Define the expected response structure
 interface AuthenticationResponse {
   message: string;

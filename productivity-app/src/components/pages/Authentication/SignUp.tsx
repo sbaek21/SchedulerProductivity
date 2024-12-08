@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { signUpUser } from './api';
+import { signUpUser, AuthenticationProps } from './api';
 import { useNavigate } from 'react-router-dom';
+import './SignUp.css';
 
-const SignUp: React.FC = () => {
+
+
+const SignUp: React.FC<AuthenticationProps> = ({setIsAuthenticated}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
@@ -15,7 +18,8 @@ const SignUp: React.FC = () => {
       try {
         const response = await signUpUser(username, password, passwordRepeat, email);
         if (response.data.message === 'Sign Up successful') {
-          navigate('/task');
+            setIsAuthenticated(true);
+            navigate('/task');
         }
       } catch (err: any) {
         console.error("Sign Up error:", err);
@@ -24,37 +28,69 @@ const SignUp: React.FC = () => {
     };
   
     return (
-      <div>
-        <h2>SignUp</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          /><br />
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          /><br />
-          <input
-            type="password"
-            placeholder="Re-enter the password"
-            value={passwordRepeat}
-            onChange={(e) => setPasswordRepeat(e.target.value)}
-          /><br />
-           <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          /><br />
-          <button type="submit">Sign Up</button>
-        </form>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </div>
+        <div className="signup-container">
+            <div className="signup-card">
+                <h2 className="signup-title">Create Your Account</h2>
+                <p className="signup-subtitle">Sign up to start managing your tasks</p>
+                <form onSubmit={handleSubmit}>
+                <div className="input-container">
+                    <i className="icon-user"></i>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username*"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="signup-input"
+                        required
+                    />
+                </div>
+                <div className="input-container">
+                    <i className="icon-email"></i>
+                    <input
+                    type="email"
+                    name="email"
+                    placeholder="Email*"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="signup-input"
+                    required
+                    />
+                </div>
+                <div className="input-container">
+                    <i className="icon-lock"></i>
+                    <input
+                    type="password"
+                    name="password"
+                    placeholder="Password*"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="signup-input"
+                    required
+                    />
+                </div>
+                <div className="input-container">
+                    <i className="icon-lock"></i> {/* Same icon for confirm password */}
+                    <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password*"
+                    value={passwordRepeat}
+                    onChange={(e) => setPasswordRepeat(e.target.value)}
+                    className="signup-input"
+                    required
+                    />
+                </div>
+                {error && <p className="signup-error">{error}</p>} 
+                <button type="submit" className="signup-button">
+                    Sign Up
+                </button>
+                </form>
+                <p className="signup-footer">
+                Already have an account? <a href="/log-in">Log In</a>
+                </p>
+            </div>
+        </div>
     );
   };
   
