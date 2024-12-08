@@ -150,7 +150,6 @@ db.query('DELETE FROM tasks WHERE id = ?', [id], (err) => {
 //LOGIN BACKEND WORK
 
 
-
 const bcrypt = require('bcryptjs');  // Ensure bcrypt is imported
 
 app.post('/api/login', (req, res) => {
@@ -170,8 +169,8 @@ app.post('/api/login', (req, res) => {
     }
 
     const user = rows[0];
-    // const passwordMatch = await bcrypt.compare(password, user.password);  // Use await here
-    passwordMatch = (password == user.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);  // Use await here
+    // passwordMatch = (password == user.password);
 
     if (passwordMatch) {
       req.session.user = username;
@@ -181,6 +180,36 @@ app.post('/api/login', (req, res) => {
     }
   });
 });
+
+
+//SIGNUP BACKEND WORK
+
+app.post('/api/signup' , async (req, res) => {
+  const { username, password, passwordRepeat, email} = req.body;
+  if ( !username || !password || !passwordRepeat || !email ) {
+    return res.status(400).json({error: 'All fields are required!'});
+  }
+  if (password != passwordRepeat) {
+    return res.status(400).json({error: 'Your password does not match!'});
+  }
+  if (!email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  )){
+    return res.status(400).json({error: 'Your email is not valid.'});
+  }
+  // Add more authentication validation here later. (ex password length, characters, etc)
+
+  cryptedPassword = await bcrypt.hash(password, 10);
+  db.query('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', [username, cryptedPassword, email], async(err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    
+    req.session.user = username;
+    return res.json({message: 'Sign Up successful'})
+  })
+});
+
 
 
 //GOOGLE AUTHENTICATION SETUP
