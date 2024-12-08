@@ -1,16 +1,16 @@
-/* Overall container */
-.login-container {
+/* Overall container styles */
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #4339F2, #3a6ff7);
+    background: linear-gradient(135deg, #4339F2, #3a6ff7); /* Green gradient background */
     font-family: 'Roboto', sans-serif;
     margin: 0;
   }
   
-  /* Card styling */
-  .login-card {
+  /* Card styles */
+  .signup-card {
     background: white;
     padding: 50px 40px;
     border-radius: 15px;
@@ -21,27 +21,29 @@
     animation: fadeIn 0.5s ease;
   }
   
-  /* Title and subtitle */
-  .login-title {
+  /* Title styles */
+  .signup-title {
     font-size: 28px;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 10px;
   }
   
-  .login-subtitle {
+  /* Subtitle styles */
+  .signup-subtitle {
     font-size: 14px;
     color: #7f8c8d;
     margin-bottom: 30px;
   }
   
-  /* Input styling */
+  /* Input field styling */
   .input-container {
     position: relative;
     margin-bottom: 20px;
   }
   
   .icon-user,
+  .icon-email,
   .icon-lock {
     position: absolute;
     left: 10px;
@@ -51,7 +53,7 @@
     font-size: 18px;
   }
   
-  .login-input {
+  .signup-input {
     width: 100%;
     padding: 12px 12px 12px 40px;
     border: 1px solid #ddd;
@@ -61,14 +63,14 @@
     transition: all 0.2s ease;
   }
   
-  .login-input:focus {
+  .signup-input:focus {
     border-color: #3a6ff7;
-    box-shadow: 0 0 5px rgba(58, 111, 247, 0.5);
     outline: none;
+    box-shadow: 0 0 5px rgba(58, 111, 247, 0.5);
   }
   
   /* Button styling */
-  .login-button {
+  .signup-button {
     width: 100%;
     padding: 12px;
     background: linear-gradient(135deg, #4339F2, #3a6ff7);
@@ -81,36 +83,37 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
-  .login-button:hover {
+  .signup-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 15px rgba(58, 111, 247, 0.4);
   }
-  
-  /* Error message */
-  .login-error {
-    color: #e74c3c;
+  .signup-error {
+    color: #e74c3c; /* Red color for errors */
     font-size: 14px;
-    margin-top: 15px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-weight: 500;
   }
   
-  /* Footer styling */
-  .login-footer {
+  /* Footer styles */
+  .signup-footer {
     margin-top: 20px;
     font-size: 14px;
     color: #7f8c8d;
   }
   
-  .login-footer a {
+  .signup-footer a {
     color: #3a6ff7;
     text-decoration: none;
     font-weight: bold;
   }
   
-  .login-footer a:hover {
+  .signup-footer a:hover {
     text-decoration: underline;
   }
   
-  /* Animation for fade-in effect */
+  /* Fade-in animation */
   @keyframes fadeIn {
     from {
       opacity: 0;
