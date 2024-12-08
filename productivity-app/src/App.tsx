@@ -11,11 +11,13 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
+    Navigate
 } from "react-router-dom";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // *** Newly Added ***
+  
   useEffect(() => {
     fetch('http://localhost:8081/tasks')
       .then(res => res.json())
@@ -26,6 +28,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Redirect to login/signup if not authenticated */}
       <Route
           path="/"
           element={<TaskMaster tasks={tasks} setTasks={setTasks} />}

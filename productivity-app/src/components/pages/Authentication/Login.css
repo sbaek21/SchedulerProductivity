@@ -1,0 +1,124 @@
+/* Overall container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4339F2, #3a6ff7);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+  }
+  
+  /* Card styling */
+  .login-card {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    max-width: 90%;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Title and subtitle */
+  .login-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .login-subtitle {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+  
+  /* Input styling */
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .icon-user,
+  .icon-lock {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 18px;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+  }
+  
+  .login-input:focus {
+    border-color: #3a6ff7;
+    box-shadow: 0 0 5px rgba(58, 111, 247, 0.5);
+    outline: none;
+  }
+  
+  /* Button styling */
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #4339F2, #3a6ff7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(58, 111, 247, 0.4);
+  }
+  
+  /* Error message */
+  .login-error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  /* Footer styling */
+  .login-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  
+  .login-footer a {
+    color: #3a6ff7;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Animation for fade-in effect */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
