@@ -28,6 +28,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Redirect to login/signup if not authenticated */}
       <Route
           path="/"
           element={<Navigate to={isAuthenticated ? "/task" : "/log-in"} />} 
