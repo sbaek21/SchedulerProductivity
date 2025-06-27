@@ -19,7 +19,7 @@ const SignUp: React.FC<AuthenticationProps> = ({setIsAuthenticated}) => {
         const response = await signUpUser(username, password, passwordRepeat, email);
         if (response.data.message === 'Sign Up successful') {
             setIsAuthenticated(true);
-            navigate('/task');
+            navigate('/log-in');
         }
       } catch (err: any) {
         console.error("Sign Up error:", err);
